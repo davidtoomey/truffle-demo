@@ -1,0 +1,92 @@
+SOLIDITY CHEAT SHEET
+
+  STRUCT: 
+      
+
+
+  MODIFIERS:
+    Restrict who can make modifications to your contract's state or call your contract's functions and this is what this section is about.
+
+    Ex: 
+      modifier onlyBy(address _account)
+    {
+        require(msg.sender == _account);
+        // Do not forget the "_;"! It will
+        // be replaced by the actual function
+        // body when the modifier is used.
+        _;
+    }
+
+  DATA LOCATION: 
+    Complex types i.e. *arrays* and *structs* have an additional annotation, "data location", to specify whether to be stored in *memory* or in *storage*.
+
+  The default data location for function parameters (including return parameters( is *memory*, default data location for local variables is *storage* and location is forced to *storage* for state variables (obviously?)
+
+  There is a third data location, calldata, which is a non-modifiable, non-persistent area where function arguments are stored. Function parameters (not return parameters) of external functions are forced to calldata and behave mostly like memory.
+
+  Everytime you send data to storage, memory, or to a state variable (even from other state variables), it creates an independent copy.
+
+  ARRAYS:
+    Arrays can have a compile-time fixed size or they can be dynamic. For storage arrays, the element type can be arbitrary (i.e. also other arrays, mappings or structs). For memory arrays, it cannot be a mapping and has to be an ABI type if it is an argument of a publicly-visible function.
+
+    
+
+
+
+PHILLY HOLD'EM
+
+  The game plays similar to Texas Hold'em except you get dealt 3 cards, the turn brings 2 cards, and the river is is the 6th community card instead of the 5th. If a player wins 3 pots in a row, they get the button the n 
+  Players must use 2 of their whole cards in combination with 3 community cards (like in PLO).
+
+  No limit.
+  
+  Players are dealt 3 cards. 
+  Preflop round of betting.
+  
+  Flop - 3 cards
+      x x x
+  Round of betting.   
+
+  Turn - 2 cards
+    x x x x x
+  Round of betting.
+
+  River - 1 card
+    x x x x x x
+  Round of betting.
+
+  SIDE-BETS
+
+  After the last round of betting but before the cards are turned up and the winner is determined, players not in the hand can place side-bets on will win the pot.
+
+  All players have seat (number) chips with #1-9 on them to specify the player they would like to bet on. 
+
+  After the winner of the main pot is determined, the side-bets are settled. Winnings are split between those who correctly chose the winner of the pot.
+
+  Side bet can be placed by players not in current hand at ANY TIME during the hand as long as they are not in the hand. 
+
+  A caller of a side-bet must call within the round of betting that the side-bet was made in. 
+    
+    Example: Player in seat #1 has folded pre-flop. As the hand develops, seat #1 notices seat #6 bets big on the flop. He thinks seat #6 probably has the best hand because he is a nit and never bets big unless he has the nuts. Because of his hunch, Player #1 bets two green $25 chips and includes the #6 seat chip - indicating an open  wager of $50 in this round of betting only, that player #6 will win the pot. Now player in seat #3 sees the $50 sidebet on player #6 and thinks it is a bad bet. Player #3 had just won a big pot from seat #6, and thinks he might be on tilt. Player #3 then bets 2 green $25 chips with the seat #9 chip, indicating he accepts player #1's wager and is matching seat #1's wager that player #9 will win the pot. The river is dealt and player #6 goes all in. Player #9 calls. Player #6 turns over a full house and player #9 mucks his cards. Player #1 wins the $100 side pot.   
+
+  If no one chooses the winner of the pot correctly, all side-bets are returned.
+
+  House rake: 1% of the main pot + 1% of side-bet pot   
+
+  HAND RANKINGS:
+ 
+    High Card(lowest)
+    One Pair
+    Two Pair
+    Three of a kind
+    Straight
+    Flush
+    Full house
+    Four of a kind
+    Straight flush
+    Royal flush (highest)
+
+    
+ 
+
+  
