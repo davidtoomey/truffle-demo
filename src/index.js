@@ -9,6 +9,7 @@ import './../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import App from './components/app';
 import reducers from './reducers';
 import Signin from './components/auth/signin';
+import Signout from './components/auth/signout';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
@@ -17,6 +18,7 @@ ReactDOM.render(
   	<Router history={browserHistory}>
   		<Route path="/" component={App}>
 				<Route path="signin" component={Signin} />
+				<Route path="signout" component={Signout} />
   		</Route>
   	</Router>
   </Provider>

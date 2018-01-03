@@ -2,6 +2,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import {
 	AUTH_USER,
+    UNAUTH_USER,
 	AUTH_ERROR
 } from './types';
 
@@ -20,7 +21,7 @@ export const signinUser = ({ email, password, error }) => {
                 // If request it bad...
                 // let error = 'INVALID CREDENTIALS';
                 dispatch(authError(error));
-                console.log(authError(error));
+                // console.log(authError(error));
             });  
     } 
 }
@@ -32,4 +33,10 @@ export function authError(error) {
 	}
 }
 
+export function signoutUser() {
+    localStorage.removeItem('token');
+    return { 
+        type: UNAUTH_USER 
+    }
+}
 
