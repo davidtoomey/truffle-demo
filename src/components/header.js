@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router';
+import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 class Header extends Component {
 	render() {
@@ -15,4 +16,10 @@ class Header extends Component {
 	}
 }
 
-export default Header;
+const mapStateToProps = state => {
+	return { 
+		authenticated: state.auth.authenticated 
+	};
+}
+
+export default connect()(Header);

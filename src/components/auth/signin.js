@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from './../../actions';
 import { connect } from 'react-redux';
-import './signin.css';
+// import './signin.css';
 
 class Signin extends Component {
 	constructor(props) {
@@ -32,7 +32,7 @@ class Signin extends Component {
 		if (this.props.errorMessage) {
 			return (
 				<div className="alert">
-					<div className="alert-warning">
+					<div className="alert alert-danger">
 					<strong>oops!</strong> {this.props.errorMessage.toString()}
 					</div>
 				</div>
