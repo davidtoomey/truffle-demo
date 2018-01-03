@@ -1,19 +1,40 @@
 import React, { Component } from 'react';
-import { Form, Field, reduxForm } from 'redux-form';
+import { bindActionCreators } from 'redux';
+import { Field, reduxForm } from 'redux-form';
 import * as actions from './../../actions';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
+import './signin.css';
 
 class Signin extends Component {
-	
-	handleFormSubmit({ email, password }) {
-		actions.signinUser({email, password});
+	constructor(props) {
+		super(props);
+
+		const {dispatch} = props;
+		// const error = props;
+
+		this.boundActionCreators = bindActionCreators(actions, dispatch);
+    console.log(this.boundActionCreators);
+	}
+
+	componentDidMount() {
+		// let { dispatch } = this.props;
+		let error = this.props;
+	}
+
+	handleFormSubmit({ email, password, error }) {
+		let { dispatch } = this.props;
+		let action = actions.signinUser({email, password, error});
+		dispatch(action);
+		// mapStateToProps(error);
 	}
 
 	renderAlert() {
 		if (this.props.errorMessage) {
 			return (
-				<div className="alert alert-danger">
-					<strong>Oops!</strong> {this.props.errorMessage}
+				<div className="alert">
+					<div className="alert-warning">
+					<strong>oops!</strong> {this.props.errorMessage.toString()}
+					</div>
 				</div>
 			);
 		}
@@ -21,10 +42,10 @@ class Signin extends Component {
 
 	render() {
 		// eslint-disable-next-line
-		const { handleSubmit, fields: { email, password }} = this.props;
+		const { handleSubmit, fields: { email, password, error }} = this.props;
 
 		return (
-			<Form 
+			<form 
 			className="container" 
 			onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}
 			>
@@ -32,7 +53,7 @@ class Signin extends Component {
 					name="email" 
 					component="input"
 					type="text"
-					placeholder="First Name"
+					placeholder="email"
 				/>
 				<Field 
 					name="password" 
@@ -40,27 +61,29 @@ class Signin extends Component {
 					type="text"
 					placeholder="password"
 				/>
-				{this.renderAlert()}
 				<button action="submit" className="btn btn-primary">Sign in</button>
-			</Form>
+				{this.renderAlert()}
+			</form>
+			
 		);
 	}
 }
 
-// Signin.propTypes = {
 
-// };	
-
-function mapStateToProps(state) {
+const mapStateToProps = state => {
 	return { errorMessage: state.auth.error };
 }
 
 
 //reduxForm helper behaves like the connect helper
-export default reduxForm({
-	form: 'signin',
-	fields: ['email', 'password']
-}, mapStateToProps, actions)(Signin);
+// export default reduxForm({
+// 	form: 'signin',
+// 	fields: ['email', 'password']
+// }, mapStateToProps, actions)(Signin);
+export default connect(mapStateToProps, null)(reduxForm({
+    form: 'signin',
+    fields: ['email', 'password']
+})(Signin));
 
 
 

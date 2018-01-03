@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
+// import { Link } from 'react-router';
 
 class Header extends Component {
 	render() {
 		return (
 			<nav className="navbar pure-menu pure-menu-horizontal">
-      	<a href="#" className="pure-menu-heading pure-menu-link">dapp</a>
-      	<ul className="pure-menu-heading pure-menu-link">
-					<li style={{ color: "#FFFFFF" }}>
-						Sign in
+				<ul className="nav navbar-nav">
+					<li className="nav-item">
+						Sign In
 					</li>
 				</ul>
       </nav>

@@ -4,33 +4,32 @@ import {
 	AUTH_USER,
 	AUTH_ERROR
 } from './types';
-// import { connect } from 'react-redux';
 
 const ROOT_URL = "http://localhost:3090";
 
-export function signinUser({ email, password }) {
-    // return function (dispatch) {
-    // Submit email/password to the server
-    	return axios.post(`${ROOT_URL}/signin`, { email, password })
-        .then(response => {
-        // If request is good...
-        // - Update state to indicate user is authenticated
-        // dispatch({ type: AUTH_USER });
-        // - Save the JWT token
-        localStorage.setItem('token', response.data.token);
-        // - redirect to the route `/feature`
-        browserHistory.push('/feature');
-        })
-        .catch(() => {
-        // If request it bad...
-        	
-        });    
-    // } 
+export const signinUser = ({ email, password, error }) => {
+    return dispatch => {
+    	axios.post(`${ROOT_URL}/signin`, { email, password })
+            .then(response => {
+                dispatch({ type: AUTH_USER });
+                console.log({ type: AUTH_USER });
+                localStorage.setItem('token', response.data.token);
+                browserHistory.push('/feature');
+            })
+            .catch(error => {
+                // If request it bad...
+                // let error = 'INVALID CREDENTIALS';
+                dispatch(authError(error));
+                console.log(authError(error));
+            });  
+    } 
 }
 
 export function authError(error) {
 	return {
-		type: AUTH_ERROR,
-		payload: error
+        type: AUTH_ERROR,
+	    payload: error
 	}
 }
+
+

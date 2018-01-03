@@ -17,9 +17,10 @@ class App extends Component {
       storedData: 0,
       web3: null,
       accounts: null,
-
     }
+    
   }
+
 
   componentWillMount() {
     // Get network provider and web3 instance.

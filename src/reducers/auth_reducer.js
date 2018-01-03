@@ -4,7 +4,7 @@ import {
 	AUTH_ERROR
 } from './../actions/types';
 
-export default (state = {}, action) => {
+export function auth(state = {}, action) {
 		switch(action.type) {
 			case AUTH_USER:
 				return { ...state, authenticated: true };
@@ -16,4 +16,6 @@ export default (state = {}, action) => {
 
 	return state;
 }
+
+export default auth;
 
