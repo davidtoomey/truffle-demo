@@ -74,12 +74,6 @@ const mapStateToProps = state => {
 	return { errorMessage: state.auth.error };
 }
 
-
-//reduxForm helper behaves like the connect helper
-// export default reduxForm({
-// 	form: 'signin',
-// 	fields: ['email', 'password']
-// }, mapStateToProps, actions)(Signin);
 export default connect(mapStateToProps, null)(reduxForm({
     form: 'signin',
     fields: ['email', 'password']
