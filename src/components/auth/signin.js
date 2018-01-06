@@ -1,20 +1,19 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 import { Field, reduxForm } from 'redux-form';
 import * as actions from './../../actions';
 import { connect } from 'react-redux';
-// import './signin.css';
 
 class Signin extends Component {
-	constructor(props) {
-		super(props);
+	// constructor(props) {
+	// 	super(props);
 
-		const {dispatch} = props;
-		// const error = props;
+	// 	const {dispatch} = props;
+	// 	// const error = props;
 
-		this.boundActionCreators = bindActionCreators(actions, dispatch);
-    console.log(this.boundActionCreators);
-	}
+	// 	this.boundActionCreators = bindActionCreators(actions, dispatch);
+ //    console.log(this.boundActionCreators);
+	// }
 
 	componentDidMount() {
 		// let { dispatch } = this.props;
