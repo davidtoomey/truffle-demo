@@ -8,6 +8,9 @@ import './../css/open-sans.css'
 import './../css/pure-min.css'
 import './App.css'
 import Header from './header'
+// import AUTH_USER from './../actions/types';
+
+
 
 class App extends Component {
   constructor(props) {
@@ -18,7 +21,6 @@ class App extends Component {
       web3: null,
       accounts: null,
     }
-    
   }
 
 

@@ -55,13 +55,25 @@ export function signoutUser() {
 
 export const fetchMessage = (message) => {
     // const token = localStorage.getItem('token');
-    return async dispatch => {
+    return dispatch => {
         axios.get(ROOT_URL, {
             headers: { authorization: localStorage.getItem('token') }
         }).then(response => {
             dispatch({
                 type: FETCH_MESSAGE,
                 payload: message
+            })
+        });
+    }
+}
+
+export const authUser = () => {
+    return dispatch => {
+        axios.get(ROOT_URL, {
+            headers: { authorization: localStorage.getItem('token') }
+        }).then(response => {
+            dispatch({
+                type: AUTH_USER
             })
         });
     }
